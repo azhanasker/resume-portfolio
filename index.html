@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Life Resume</title>
+    <!-- Include the html2pdf.js script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 </head>
 <body>
@@ -75,19 +76,24 @@
   
   <script>
     function downloadResume() {
+        // Hide the download button before generating the PDF
         document.getElementById('downloadButton').style.display = 'none';
+
         const element = document.body; // Capture the entire page content
-        
+
+        // Convert the HTML content to PDF using html2pdf
         html2pdf()
-            .from(element) // Use the captured content
-            .save('Azhan_Asker_Resume.pdf'); // Name the downloaded file
+            .from(element)
+            .save('Azhan_Asker_Resume.pdf') // Name the downloaded file
             .finally(() => {
                 // Show the download button again after the PDF is generated
                 document.getElementById('downloadButton').style.display = 'block';
             });
     }
   </script>
-<button id="downloadButton" onclick="downloadResume()">Download Resume</button>
+
+  <!-- Download Button -->
+  <button id="downloadButton" onclick="downloadResume()">Download Resume</button>
   
 </body>
 </html>
