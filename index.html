@@ -75,11 +75,16 @@
   
   <script>
     function downloadResume() {
+        document.getElementById('downloadButton').style.display = 'none';
         const element = document.body; // Capture the entire page content
         
         html2pdf()
             .from(element) // Use the captured content
             .save('Azhan_Asker_Resume.pdf'); // Name the downloaded file
+            .finally(() => {
+                // Show the download button again after the PDF is generated
+                document.getElementById('downloadButton').style.display = 'block';
+            });
     }
   </script>
 
