@@ -74,8 +74,32 @@
   
   <script>
     function downloadResume() {
-        alert("Your resume will be downloaded soon!");
-        // Integration with PDF libraries like jsPDF can be added here
+      const { jsPDF } = window.jspdf; // Get jsPDF from the library
+        const doc = new jsPDF();
+     // Add content to PDF
+        doc.text("Azhan Asker", 10, 10);
+        doc.text("Software Engineer", 10, 20);
+        doc.text("Email: azhanasker@gmail.com | Phone: +91 8252057698", 10, 30);
+        doc.text("Summary:", 10, 40);
+        doc.text("Final-year Computer Science Engineering student with a passion for software development and a proven ability to quickly learn and apply new technologies...", 10, 50);
+        doc.text("Education:", 10, 70);
+        doc.text("Bachelor of Technology (B.Tech) in Computer Science, Jamia Hamdard (Pursuing, Final Year)", 10, 80);
+        doc.text("Diploma in Engineering (2022)", 10, 90);
+        doc.text("10th Standard, CBSE Board (2019)", 10, 100);
+        doc.text("Technical Skills:", 10, 120);
+        doc.text("Python, SQL, JavaScript", 10, 130);
+        doc.text("Projects:", 10, 150);
+        doc.text("Age Calculator Android App (In Progress)...", 10, 160);
+        doc.text("Work Experience:", 10, 180);
+        doc.text("Fresh Graduate seeking to gain hands-on experience through internships.", 10, 190);
+        doc.text("Personal Information:", 10, 210);
+        doc.text("Date of Birth: 27-Feb-2004", 10, 220);
+        doc.text("Languages Known: Hindi, English", 10, 230);
+        doc.text("Gender: Male", 10, 240);
+        doc.text("Nationality: Indian", 10, 250);
+        
+        // Save the document as a PDF
+        doc.save('Azhan_Asker_Resume.pdf');
     }
   </script>
   <button onclick="downloadResume()">Download Resume</button>
