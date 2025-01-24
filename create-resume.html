@@ -34,7 +34,7 @@
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
-            box-sizing: border-box; /* Ensures padding doesn't affect width */
+            box-sizing: border-box;
         }
 
         button {
@@ -48,6 +48,10 @@
 
         button:hover {
             background-color: #0056b3;
+        }
+
+        .no-print {
+            visibility: hidden; /* Hide the element when generating the PDF */
         }
     </style>
 </head>
@@ -122,7 +126,8 @@
       <p id="generatedPersonalInfo"></p>
     </section>
 
-    <button onclick="downloadGeneratedResume()">Download Resume</button>
+    <!-- Hidden Download Resume Button -->
+    <button class="no-print">Download Resume</button>
   </div>
 
   <script>
@@ -154,6 +159,9 @@
       // Show generated resume and hide form
       document.getElementById('generatedResume').style.display = 'block';
       document.getElementById('resumeForm').style.display = 'none';
+
+      // Automatically download the resume
+      downloadGeneratedResume();
     });
 
     function downloadGeneratedResume() {
@@ -162,22 +170,9 @@
         .from(element)
         .set({
           filename: 'Generated_Resume.pdf',
-          html2canvas: {
-            scale: 4 // Higher scale for better quality
-          },
-          jsPDF: {
-            unit: 'mm',
-            format: 'a4',
-            orientation: 'portrait',
-            // Explicitly set to not include any header/footer in the PDF
-            putOnlyUsedFonts: true,
-            autoPaging: true
-          },
-          margin: [10, 10, 10, 10], // Adjust margins to avoid text being cut off
-          html2pdf: {
-            header: null,  // Disable the header
-            footer: null   // Disable the footer
-          }
+          html2canvas: { scale: 4 }, // Higher scale for better quality
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          margin: [10, 10, 10, 10]
         })
         .save();
     }
